@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import 'dotenv/config'
+import routes from "./routes/index.js";
 
 
 
@@ -14,10 +15,12 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log('MongoDB connected!'))
 .catch(err => console.error('MongoDB connection error:', err))
 
+app.use('/api', routes)
 
 app.use('/', (req, res) => {
   res.send('API is up and running!');
 });
+
 
 
 // app.use('/', (req, res) => {
